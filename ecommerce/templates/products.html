@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block userContent %}
+
+<h3>Products Page: Ecommerce Website</h3>
+
+<div class="container">
+    <div class="row m-3 p-5">
+
+        {% for i in data %}
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body justify-content-between">
+                <h5 class="card-title">{{i.ProductName}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{i.ProductPrice}}</h6>
+                <p class="card-text">{{i.ProductDescription|truncatechars:80}}</p>
+                <button type="button" class="btn btn-dark  btn-lg">Buy Now</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

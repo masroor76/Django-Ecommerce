@@ -1,17 +1,18 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpRequest
+from products.models import ProductsModel
 
 # Create your views here.
 
 class Home(View):
     def get(self, request, format=None):
-        list = {'name':'Masroor Anir','age':25}
-        return render(request,'index.html',list)
+        data = ProductsModel.objects.all()
+        return render(request,'index.html' , {'data': data})
     
 class Products(View):
     def get(self, request, format=None): 
-        return render(request,'products.html')
+        data = ProductsModel.objects.all()
+        return render(request,'products.html', {'data': data} )
 
 class About(View):
     def get(self, request, format=None):
