@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.utils.decorators import method_decorator
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views import View
 
 
-class Dashboard(View): 
+class Dashboard(View):
+    @method_decorator(login_required)
     def get(self, request):
-        return render(request, 'dashdboard.html')
+        return render(request,'dashboard.html') 
 
 
 class Registration(View):
@@ -26,6 +29,7 @@ class Registration(View):
     
 
 
+# @user_passes_test(not_logged_in)
 class Login(View):
     def get(self, request):
         return render(request, 'login.html')
@@ -41,3 +45,10 @@ class Login(View):
         else:
             print("None User")
             return redirect('/')
+        
+
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return render(request, 'login.html')

@@ -1,8 +1,9 @@
-{% extends 'index.html' %}
+{% extends 'base_layout.html' %}
+
 {% block userContent %}
 
 <div class="m-5">
-    <form action="/login" method="POST">
+    <form action="/accounts/login/" method="POST">
         {% csrf_token %}
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
@@ -14,6 +15,9 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <label class="label">
+        New User - <a href='/accounts/registration/'>Register</a> Now
+    </label>
 </div>
 
 {% endblock %}

@@ -17,13 +17,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/registration">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
             </ul>
         </div>
+
+        
+          
+        {% if request.user.is_authenticated %} 
+        
+            <p class="d-flex align-self-center justify-content-center ">Welcome, <a class="nav-link" href="/dashboard">{{user}} </a></P>
+            <a href="/accounts/logout" >
+                <button type="button" class="btn btn-secondary" >Logout</button>
+            </a>
+        {% else %}
+            <a  href="/accounts/login">
+                <button type="button" class="btn btn-secondary" >Login</button>
+            </a>
+        {% endif %}
     </div>
 </nav>
